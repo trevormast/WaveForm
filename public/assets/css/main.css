@@ -1,0 +1,12 @@
+.navbar-form.navbar-right input, button {
+  margin-left: 5px,
+  margin-right: 5px;
+}
+#canvas {
+  text-align: center;
+}
+canvas {
+  align-self: center;
+  margin: 10px 10px 10px 10px;
+  border: 5px solid;
+}
