@@ -2,7 +2,7 @@ require 'sinatra'
 require './lib/wave.rb'
 require './lib/line.rb'
 require 'json'
-require 'pry'
+
 
 module WaveForm
   class App < Sinatra::Base
