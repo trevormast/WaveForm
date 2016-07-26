@@ -3,7 +3,6 @@ var canvas = $('#myCanvas');
 function drawWave(points, waveType) {
 
   var obj = waveTypeCheck(waveType);
-  console.log(obj);
 
   var pts = points;
 
@@ -11,8 +10,6 @@ function drawWave(points, waveType) {
     obj['x'+(p+1)] = pts[p][0];
     obj['y'+(p+1)] = pts[p][1];
   };
-
-  console.log(obj);
 
   $('#myCanvas').drawLine(obj);
 };

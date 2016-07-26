@@ -16,3 +16,34 @@ nav.navbar.navbar-inverse
 
 #canvas
 
+javascript:
+  $(document).ready(function() {
+    //console.log("production: #{AppEnv.production?}");
+    //console.log("development: #{AppEnv.development?}")
+    $('#create').click(function() {
+      $('canvas').clearCanvas();
+
+      submitDimensions();
+
+      var formData = {};
+        $('#waveform').find("input[name]").each(function (index, node) {
+            formData[node.name] = node.value;
+        });
+      $.ajax({
+        url: "#{root_url}create.json",
+        // url: "https://aqueous-headland-21339.herokuapp.com/create.json",
+        data: formData,
+        success: function(data) {
+          drawWave(data.freq1, 'default');
+          drawWave(data.freq2, 'default');
+          drawWave(data.resultant, 'resultant');
+        }
+      });
+    });
+  });
+
+  function submitDimensions() {
+    console.log('submitted dimensions')
+    $('#formWidth').attr('value', $(window).width());
+    $('#formHeight').attr('value', $(window).height());
+  };

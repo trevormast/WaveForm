@@ -1,11 +1,15 @@
 require 'sinatra'
 require './lib/wave.rb'
 require './lib/line.rb'
+require './lib/view_helpers.rb'
 require 'json'
+require 'pry' if AppEnv.development?
 
 
 module WaveForm
   class App < Sinatra::Base
+    include ViewHelpers
+
     get '/' do
       slim :index, layout: :default
     end
