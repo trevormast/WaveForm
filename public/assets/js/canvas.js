@@ -1,12 +1,9 @@
 var canvas = $('#myCanvas');
 
-function drawWave(points) {
-  gpoints = points
-  var obj = {
-    strokeStyle: '#000',
-    strokeWidth: 6,
-    rounded: true
-  };
+function drawWave(points, waveType) {
+
+  var obj = waveTypeCheck(waveType);
+  console.log(obj);
 
   var pts = points;
 
@@ -15,6 +12,24 @@ function drawWave(points) {
     obj['y'+(p+1)] = pts[p][1];
   };
 
-  console.log(obj)
+  console.log(obj);
+
   $('#myCanvas').drawLine(obj);
+};
+
+var waveTypeCheck = function(waveType) {
+  if ( waveType === 'resultant' ) {
+    var options = {
+                    strokeStyle: '#F00',
+                    strokeWidth: 6,
+                    rounded: true
+                  }
+  } else {
+    var options = {
+                    strokeStyle: '#000',
+                    strokeWidth: 3,
+                    rounded: true
+                  }
+  };
+  return options
 };

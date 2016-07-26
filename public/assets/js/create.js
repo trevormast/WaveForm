@@ -13,7 +13,9 @@ $(document).ready(function() {
       url: 'http://localhost:9292/create.json',
       data: formData,
       success: function(data) {
-        drawWave(data.points);
+        drawWave(data.freq1, 'default');
+        drawWave(data.freq2, 'default');
+        drawWave(data.resultant, 'resultant');
       }
     });
   });

@@ -12,13 +12,22 @@ module WaveForm
 
     get '/create.json' do
 
-      @wave = Wave.new(wave_params[:width],
-                       wave_params[:height],
-                       wave_params[:freq1],
-                       wave_params[:freq2])
+      @resultant = Wave.new(wave_params[:width],
+                            wave_params[:height],
+                            wave_params[:freq1],
+                            wave_params[:freq2])
+      @freq1 = Wave.new(wave_params[:width],
+                        wave_params[:height],
+                        wave_params[:freq1])
+
+      @freq2 = Wave.new(wave_params[:width],
+                        wave_params[:height],
+                        wave_params[:freq2])
 
       content_type :json
-      { points: @wave.points }.to_json
+      { resultant: @resultant.points,
+        freq1: @freq1.points,
+        freq2: @freq2.points }.to_json
     end
 
     def wave_params
