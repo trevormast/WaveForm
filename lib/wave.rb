@@ -2,11 +2,12 @@ class Wave
   include Math
 
   attr_reader :points
-  def initialize(window, freq, freq2 = nil)
-    @window = window
+  def initialize(width, height, freq, freq2 = nil)
+    @width= width
+    @height = height
     @freq = freq
     @freq2 = freq2
-    @line = Line.new(@window).points
+    @line = Line.new(@width, @height).points
 
     points
   end

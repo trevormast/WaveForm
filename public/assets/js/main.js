@@ -5,4 +5,6 @@ var newCanvas = $('<canvas/>',{
                       height: $(window).height() - 100
 });
 
-$(document).ready($('#canvas').append(newCanvas));
+$(window).on('load', function(){
+  $('#canvas').append(newCanvas);
+});

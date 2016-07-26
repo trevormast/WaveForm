@@ -3,12 +3,16 @@ nav.navbar.navbar-inverse
     .navbar-header
       a.navbar-brand href="#" WaveForm
 
-    .navbar-form.navbar-right role="form"
+    form.navbar-form.navbar-right#waveform role="form"
       .form-group
-        input.form-control type="text" name="freq1" placeholder="frequency 1"
+        input.form-control#formFreq1 type="number" name="freq1" placeholder="frequency 1" required="required" data-error="Frequency 1 is required"
       .form-group
-        input.form-control type="text" name="freq2" placeholder="frequency 2"
-      button.btn.btn-primary Show
+        input.form-control#formFreq2 type="number" name="freq2" placeholder="frequency 2" required="required" data-error="Frequency 2 is required"
+      .form-group.hidden
+        input.form-control#formWidth type="number" name="width"
+        input.form-control#formHeight type="number" name="height"
+      a.btn.btn-primary#create Show
+.messages
 
 #canvas
 

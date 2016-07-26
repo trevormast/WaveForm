@@ -1,7 +1,11 @@
-.navbar-form.navbar-right input, button {
-  margin-left: 5px,
-  margin-right: 5px;
+.form-group {
+  margin-right: 10px;
 }
+
+.hidden {
+  display: none;
+}
+
 #canvas {
   text-align: center;
 }
