@@ -17,15 +17,23 @@ function drawWave(points, waveType) {
 var waveTypeCheck = function(waveType) {
   if ( waveType === 'resultant' ) {
     var options = {
+                    layer: true,
+                    name: waveType,
+                    opacity: 0.75,
                     strokeStyle: '#F00',
                     strokeWidth: 6,
                     rounded: true
                   }
   } else {
     var options = {
+                    layer: true,
+                    name: waveType,
+                    opacity: 0.75,
                     strokeStyle: '#000',
                     strokeWidth: 3,
-                    rounded: true
+                    rounded: true,
+                    visible: false
+
                   }
   };
   return options
