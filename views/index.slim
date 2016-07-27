@@ -20,11 +20,10 @@ nav.navbar.navbar-inverse
 javascript:
   $(document).ready(function() {
     var toggle = true
-    //console.log("production: #{AppEnv.production?}");
-    //console.log("development: #{AppEnv.development?}")
+
     $('#create').click(function() {
       toggle = true;
-      $('canvas').clearCanvas();
+      resetCanvas();
       $('#toggleOriginal').removeClass('hidden');
 
       submitDimensions();
@@ -61,8 +60,13 @@ javascript:
     });
   });
 
+  function resetCanvas() {
+    $('canvas').removeLayer('resultant').drawLayers();
+    $('canvas').removeLayer('freq1').drawLayers();
+    $('canvas').removeLayer('freq2').drawLayers();
+
+  }
   function submitDimensions() {
-    console.log('submitted dimensions')
     $('#formWidth').attr('value', $(window).width());
     $('#formHeight').attr('value', $(window).height());
   };
