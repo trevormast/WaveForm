@@ -5,9 +5,9 @@ nav.navbar.navbar-inverse
 
     form.navbar-form.navbar-right#waveform role="form"
       .form-group
-        input.form-control#formFreq1 type="number" name="freq1" placeholder="frequency 1" required="required" data-error="Frequency 1 is required"
+        input.form-control#formFreq1 type="number" name="freq1" placeholder="frequency 1 (Hz)" required="required" data-error="Frequency 1 is required"
       .form-group
-        input.form-control#formFreq2 type="number" name="freq2" placeholder="frequency 2" required="required" data-error="Frequency 2 is required"
+        input.form-control#formFreq2 type="number" name="freq2" placeholder="frequency 2 (Hz)" required="required" data-error="Frequency 2 is required"
       .form-group.hidden
         input.form-control#formWidth type="number" name="width"
         input.form-control#formHeight type="number" name="height"
@@ -67,6 +67,6 @@ javascript:
 
   }
   function submitDimensions() {
-    $('#formWidth').attr('value', $(window).width());
-    $('#formHeight').attr('value', $(window).height());
+    $('#formWidth').attr('value', width);
+    $('#formHeight').attr('value', height);
   };
