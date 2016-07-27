@@ -1,7 +1,7 @@
 nav.navbar.navbar-inverse
   .container-fluid
     .navbar-header
-      a.navbar-brand href="#" WaveForm
+      a.navbar-brand href="#" WWaveForm
 
     form.navbar-form.navbar-right#waveform role="form"
       .form-group
@@ -11,17 +11,21 @@ nav.navbar.navbar-inverse
       .form-group.hidden
         input.form-control#formWidth type="number" name="width"
         input.form-control#formHeight type="number" name="height"
-      a.btn.btn-primary#create Show
+      a.btn.btn-primary.form-btn#create Show
+      button.btn.btn-secondary.hidden#toggleOriginal Toggle Original
 .messages
 
 #canvas
 
 javascript:
   $(document).ready(function() {
+    var toggle = true
     //console.log("production: #{AppEnv.production?}");
     //console.log("development: #{AppEnv.development?}")
     $('#create').click(function() {
+      toggle = true;
       $('canvas').clearCanvas();
+      $('#toggleOriginal').removeClass('hidden');
 
       submitDimensions();
 
@@ -34,11 +38,26 @@ javascript:
         // url: "https://aqueous-headland-21339.herokuapp.com/create.json",
         data: formData,
         success: function(data) {
-          drawWave(data.freq1, 'default');
-          drawWave(data.freq2, 'default');
+          drawWave(data.freq1, 'freq1');
+          drawWave(data.freq2, 'freq2');
           drawWave(data.resultant, 'resultant');
         }
       });
+    });
+
+    $('#toggleOriginal').click(function(event) {
+      event.preventDefault();
+
+      $('canvas').setLayer('freq1', {
+        visible: toggle
+      });
+
+      $('canvas').setLayer('freq2', {
+        visible: toggle
+      }).drawLayers();
+
+      toggle = (toggle == false) ? true : false;
+
     });
   });
 
