@@ -1,5 +1,7 @@
 var width = $(window).width() - 100
-var height = (screen.width <= 750) ? $(window).width() - 100 : ($(window).width() / 2) - 100
+var bigScreenHeight = ($(window).width() / 2) - 100
+var height = (screen.width <= 750) ? width : bigScreenHeight
+
 var newCanvas = $('<canvas/>',{
                     id: 'myCanvas'
                     }).prop({

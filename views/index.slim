@@ -12,20 +12,30 @@ nav.navbar.navbar-inverse
         input.form-control#formWidth type="number" name="width"
         input.form-control#formHeight type="number" name="height"
       a.btn.btn-primary.form-btn#create Show
-      button.btn.btn-secondary.hidden#toggleOriginal Toggle Original
+      button.btn.btn-secondary.form-btn.hidden#toggleResultant Toggle Resultant
+      button.btn.btn-secondary.form-btn.hidden#toggleOriginal Toggle Original
 .messages
 
 #canvas
 
 javascript:
   $(document).ready(function() {
-    var toggle = true
 
-    $('#create').click(function() {
-      toggle = true;
+  //EVENT BINDINGS
+
+    //KEYPRESS ENTER
+    $('body').on('keypress', 'input', function(args) {
+      if (args.keyCode == 13) {
+          $("#create").click();
+          return false;
+      }
+    });
+
+    //SHOW BUTTON
+    $('#create').click(function(event) {
+      event.preventDefault();
       resetCanvas();
-      $('#toggleOriginal').removeClass('hidden');
-
+      showToggleButtons();
       submitDimensions();
 
       var formData = {};
@@ -34,7 +44,7 @@ javascript:
         });
       $.ajax({
         url: "#{root_url}create.json",
-        // url: "https://aqueous-headland-21339.herokuapp.com/create.json",
+        // url: "https://wwaveform.herokuapp.com/create.json",
         data: formData,
         success: function(data) {
           drawWave(data.freq1, 'freq1');
@@ -44,28 +54,31 @@ javascript:
       });
     });
 
+    //TOGGLE ORIGINAL BUTTON
     $('#toggleOriginal').click(function(event) {
       event.preventDefault();
 
-      $('canvas').setLayer('freq1', {
-        visible: toggle
-      });
+      toggleVisibility('freq1');
+      toggleVisibility('freq2');
+    });
 
-      $('canvas').setLayer('freq2', {
-        visible: toggle
-      }).drawLayers();
 
-      toggle = (toggle == false) ? true : false;
+    //TOGGLE RESULTANT BUTTON
+    $('#toggleResultant').click(function(event) {
+      event.preventDefault();
+
+      toggleVisibility('resultant');
 
     });
   });
 
-  function resetCanvas() {
-    $('canvas').removeLayer('resultant').drawLayers();
-    $('canvas').removeLayer('freq1').drawLayers();
-    $('canvas').removeLayer('freq2').drawLayers();
+  //HELPERS
 
+  function showToggleButtons() {
+    $('#toggleOriginal').removeClass('hidden');
+    $('#toggleResultant').removeClass('hidden');
   }
+
   function submitDimensions() {
     $('#formWidth').attr('value', width);
     $('#formHeight').attr('value', height);
