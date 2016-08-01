@@ -42,9 +42,10 @@ javascript:
         $('#waveform').find("input[name]").each(function (index, node) {
             formData[node.name] = node.value;
         });
+      var proto = window.location.protocol
+
       $.ajax({
-        url: "#{root_url}create.json",
-        // url: "https://wwaveform.herokuapp.com/create.json",
+        url: proto + "//#{hostname + port}/create.json",
         data: formData,
         success: function(data) {
           drawWave(data.freq1, 'freq1');
